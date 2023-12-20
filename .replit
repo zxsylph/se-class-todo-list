@@ -1,5 +1,4 @@
 run = "npm run dev"
-hidden = [".config"]
 
 [nix]
 channel = "stable-22_11"
@@ -9,10 +8,3 @@ channel = "stable-22_11"
   pattern = "**/{*.ts,*.js,*.tsx,*.jsx,*.json}"
     [languages.typescript.languageServer]
     start = "typescript-language-server --stdio"
-
-[gitHubImport]
-requiredFiles = [".replit", "replit.nix", ".config"]
-
-[deployment]
-publicDir = "/"
-deploymentTarget = "static"
