@@ -7,3 +7,42 @@ body{
   bottom:0px;
 }
 
+#app{
+  width: 300px;
+}
+
+.d-flex{
+  display:flex;
+}
+
+.flex-column{
+  flex-direction:column;
+}
+
+.flex-grow{
+  flex-grow:1;
+}
+
+#todoName{
+  width:100%;
+}
+
+.col-1{
+  width: 20px;
+}
+
+.col-3{
+  width: 50px;
+}
+
+#inputDiv{
+  margin-bottom: 10px;
+}
+
+.jc-center{
+  justify-content:center;
+}
+
+.display-name{
+  margin-left: 10px
+}

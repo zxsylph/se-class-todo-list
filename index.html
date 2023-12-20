@@ -7,8 +7,21 @@
     <link rel="stylesheet" href="/index.css" />
   </head>
   <body>
-    <div id="app" class="">
-      Todo List
+    <div id="app" class="d-flex flex-column">
+      <div id="inputDiv" class="d-flex">
+        <div class="flex-grow">
+          <input type="text" id="todoName" />
+        </div>
+        <div>
+          <button id="addButton">Add</button>
+        </div>
+      </div>
+      <div id="dataDiv">
+        <table border="1" width="100%">
+          <tbody id="todoList">
+          </tbody>
+        </table>
+      </div>
     </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
