@@ -19,7 +19,10 @@ let todoRowTemplate = `
 `
 
 function generateNewRow(todoValue: string) {
+  console.log('tr in html ', document.querySelectorAll('tr').length)
+  let id = document.querySelectorAll('tr').length + 1
   let tr = document.createElement('tr')
+  tr.id = "id" + id
   // tr = <tr></tr>
   let col1 = document.createElement('td')
   col1.classList.add('col-1')
@@ -45,7 +48,11 @@ function generateNewRow(todoValue: string) {
   let button = document.createElement('button')
   button.innerText = 'Del'
   button.addEventListener('click', () => {
-    console.log('del button click')
+    console.log('del button click', todoValue)
+    let trHtml = document.querySelector('#id' + id)
+    // let trHtml = document.querySelector(`#${todoValue}`)
+    console.log(trHtml)
+    trHtml.remove()
   })
   buttonDiv.appendChild(button)
   col3.appendChild(buttonDiv)
@@ -76,29 +83,29 @@ if (addButtonHtml != null) {
     let todoListHtml = document.querySelector<HTMLTableElement>('#todoList')
     if (todoListHtml != null) {
 
-      let newRow = todoRowTemplate.replace('{{name}}', todoNameValue)
-      todoListHtml.innerHTML += newRow
+      // let newRow = todoRowTemplate.replace('{{name}}', todoNameValue)
+      // todoListHtml.innerHTML += newRow
 
-      let buttonHtml = document.querySelectorAll('td > div > button')
-      console.log(buttonHtml)
+      // let buttonHtml = document.querySelectorAll('td > div > button')
+      // console.log(buttonHtml)
 
-      buttonHtml.forEach((button) => {
-        button.addEventListener('click', () => {
-          console.log('del button click')
-        })
-      })
+      // buttonHtml.forEach((button) => {
+      //   button.addEventListener('click', () => {
+      //     console.log('del button click')
+      //   })
+      // })
 
-      for (let i = 0; i < 10; i++) {
-        if (i % 2 == 0) {
-          buttonHtml[i].addEventListener('click', () => {
-            console.log('del button click')
-          })
-        }
-      }
+      // for (let i = 0; i < 10; i++) {
+      //   if (i % 2 == 0) {
+      //     buttonHtml[i].addEventListener('click', () => {
+      //       console.log('del button click')
+      //     })
+      //   }
+      // }
 
-      // let newRow = generateNewRow(todoNameValue)
-      // console.log(newRow)
-      // todoListHtml.appendChild(newRow)
+      let newRow = generateNewRow(todoNameValue)
+      console.log(newRow)
+      todoListHtml.appendChild(newRow)
     }
 
     todoNameHtml.value = ''
