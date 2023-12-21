@@ -26,10 +26,12 @@ function generateNewRow(todoValue: string) {
   // tr = <tr></tr>
   let col1 = document.createElement('td')
   col1.classList.add('col-1')
-  let input = document.createElement('input')
-  input.type = 'checkbox'
-  col1.appendChild(input)
+  let doneButton = document.createElement('button')
+  doneButton.innerText = 'Done'
+  // let input = document.createElement('input')
+  // input.type = 'checkbox'
   // col1 = <td class="col-1"><input type="checkbox"></td>
+  col1.appendChild(doneButton)
   tr.appendChild(col1)
   // col1 = <td class="col-1"></td>
   // <tr><td class="col-1"></td></tr>
@@ -40,6 +42,8 @@ function generateNewRow(todoValue: string) {
   nameDiv.innerText = todoValue
   col2.appendChild(nameDiv)
   tr.appendChild(col2)
+
+
 
   let col3 = document.createElement('td')
   col3.classList.add('col-3')
