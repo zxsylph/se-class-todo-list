@@ -2,17 +2,19 @@ import './style.css'
 
 console.log('App Start')
 
-let todoRowTemplate = `<tr>
-              <td class="col-1"><input type="checkbox" /></td>
-              <td>
-                <div class="display-name">Name</div>
-              </td>
-              <td class="col-3">
-                <div class="d-flex jc-center">
-                  <button>Del</button>
-                </div>
-              </td>
-            </tr>`
+let todoRowTemplate = `
+<tr>
+  <td class="col-1"><input type="checkbox" /></td>
+  <td>
+    <div class="display-name">{{name}}</div>
+  </td>
+  <td class="col-3">
+    <div class="d-flex jc-center">
+      <button>Del</button>
+    </div>
+  </td>
+</tr>
+`
 
 let addButtonHtml = document.querySelector('#addButton')
 if (addButtonHtml != null) {
@@ -22,8 +24,9 @@ if (addButtonHtml != null) {
     let todoNameHtml = document.querySelector<HTMLInputElement>('#todoName')
     let todoNameValue = todoNameHtml?.value
 
+    document.querySelector('#errorMessage').classList.add('d-none')
     if (todoNameValue == '') {
-      alert('Todo Name is Empty')
+      document.querySelector('#errorMessage').classList.remove('d-none')
       return
     }
 
@@ -32,8 +35,11 @@ if (addButtonHtml != null) {
 
     let todoListHtml = document.querySelector<HTMLTableElement>('#todoList')
     if (todoListHtml != null) {
-      todoListHtml.innerHTML = todoRowTemplate
+
+      let newRow = todoRowTemplate.replace('{{name}}', todoNameValue)
+      todoListHtml.innerHTML = todoListHtml.innerHTML + newRow
     }
 
+    todoNameHtml.value = ''
   })
 }

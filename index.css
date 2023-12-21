@@ -46,3 +46,11 @@ body{
 .display-name{
   margin-left: 10px
 }
+
+.d-none{
+  display:none;
+}
+
+#errorMessage{
+  color:red;
+}
