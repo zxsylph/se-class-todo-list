@@ -1,5 +1,13 @@
 import './style.css'
 
+type Todo = {
+  id: number;
+  title: string | undefined;
+  completed: boolean;
+}
+
+let todos: Todo[] = []
+
 console.log('App Start')
 
 let todoRowTemplate = `
@@ -43,7 +51,16 @@ function generateNewRow(todoValue: string) {
   col2.appendChild(nameDiv)
   tr.appendChild(col2)
 
-
+  if (doneButton != null) {
+    doneButton.addEventListener('click', () => {
+      console.log('done button clicked')
+      if (nameDiv.classList.contains('bg-green')) {
+        nameDiv.classList.remove('bg-green')
+      } else {
+        nameDiv.classList.add('bg-green')
+      }
+    })
+  }
 
   let col3 = document.createElement('td')
   col3.classList.add('col-3')
@@ -107,11 +124,62 @@ if (addButtonHtml != null) {
       //   }
       // }
 
-      let newRow = generateNewRow(todoNameValue)
-      console.log(newRow)
-      todoListHtml.appendChild(newRow)
+      let newTodo: Todo = {
+        id: todos.length + 1,
+        title: todoNameValue,
+        completed: false
+      }
+
+      todos.push(newTodo)
+      console.log('todos', todos)
+
+      // saveTodosToLocalStorage()
+
+      // let newRow = generateNewRow(todoNameValue)
+      // console.log(newRow)
+      // todoListHtml.appendChild(newRow)
+
+      clearTodoHtml()
+      displayTodos()
     }
 
     todoNameHtml.value = ''
   })
 }
+
+function clearTodoHtml() {
+  let todoListHtml = document.querySelector<HTMLTableElement>('#todoList')
+  if (todoListHtml != null) {
+    todoListHtml.innerHTML = ''
+  }
+}
+
+function displayTodos() {
+  let todoListHtml = document.querySelector<HTMLTableElement>('#todoList')
+  if (todoListHtml != null) {
+    for (let i = 0; i < todos.length; i++) {
+      let todo = todos[i]
+      let newRow = generateNewRow(todo.title)
+      todoListHtml.appendChild(newRow)
+    }
+  }
+}
+
+document.querySelector('#saveButton').addEventListener('click', saveTodosToLocalStorage)
+
+function saveTodosToLocalStorage() {
+  let todosText = JSON.stringify(todos)
+  window.localStorage.setItem('todos', todosText)
+}
+
+document.querySelector('#loadButton').addEventListener('click', () => {
+  console.log('load button clicked')
+
+  let todosText = window.localStorage.getItem('todos')
+  todos = JSON.parse(todosText)
+
+  console.log(todos)
+
+  clearTodoHtml()
+  displayTodos()
+})
