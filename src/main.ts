@@ -1,6 +1,5 @@
 import './style.css'
 
-import { generateNewRow } from './functions/generateNewRow'
 import { saveTodosToLocalStorage } from './functions/saveTodosToLocalStorage'
 import { clearTodoHtml } from './functions/clearTodoHtml'
 import { displayTodos } from './functions/displayTodos'
